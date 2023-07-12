@@ -127,6 +127,7 @@ int main()
 
     if (IsWindowsXPOrGreater())
     {
+
         std::string minecraftProcessSearch;
         std::string minecraftProcessNotFound;
         std::string chooseDllFile;
@@ -134,6 +135,7 @@ int main()
         std::string dllInjectionSuccess;
         std::string dllInjectionFailure;
         std::string noDllFileSelected;
+        std::string Menu;
 
         if (language == "English")
         {
@@ -144,6 +146,7 @@ int main()
             dllInjectionSuccess = "DLL injection successful.";
             dllInjectionFailure = "DLL injection failed.";
             noDllFileSelected = "No DLL file selected.";
+            Menu = "\nSelected language: " + language + "\nSelect an option: \n1. Inject DLL\n2. Select language\n3. Exit";
         }
         else if (language == "Japanese")
         {
@@ -154,6 +157,7 @@ int main()
             dllInjectionSuccess = "DLLの注入に成功しました。";
             dllInjectionFailure = "DLLの注入に失敗しました。";
             noDllFileSelected = "DLLファイルが選択されていません。";
+            Menu = "\n選択された言語：" + language + "\nオプションを選択してください：\n1.DLLのインジェクション\n2.言語の選択\n3.終了";
         }
         else if (language == "Korean")
         {
@@ -164,6 +168,7 @@ int main()
             dllInjectionSuccess = "DLL 주입 성공.";
             dllInjectionFailure = "DLL 주입 실패.";
             noDllFileSelected = "DLL 파일이 선택되지 않았습니다.";
+            Menu = "\n선택한 언어: " + language + "\n옵션을 선택하세요: \n1. DLL 삽입\n2. 언어 선택\n3. 종료";
         }
         else if (language == "Chinese (繁體)")
         {
@@ -174,6 +179,7 @@ int main()
             dllInjectionSuccess = "DLL 注入成功.";
             dllInjectionFailure = "DLL 注入失敗.";
             noDllFileSelected = "未選擇 DLL.";
+            Menu = "\n所選的語言：" + language + "\n選擇一個選項：\n1.注入DLL\n2.選擇語言\n3.退出";
         }
         else if (language == "Chinese (簡體)")
         {
@@ -184,7 +190,9 @@ int main()
             dllInjectionSuccess = "DLL 注入成功.";
             dllInjectionFailure = "DLL 注入失败.";
             noDllFileSelected = "未选择 DLL.";
+            Menu = "\n所选的语言：" + language + "\n选择一个选项：\n1.注入DLL\n2.选择语言\n3.退出";
         }
+
         while (true)
         {
             if (language.empty())
@@ -192,11 +200,7 @@ int main()
                 std::cout << "Language not selected." << std::endl;
             }
 
-            std::cout << "Selected language: " << language << std::endl;
-            std::cout << "Choose an option:" << std::endl;
-            std::cout << "1. Inject DLL" << std::endl;
-            std::cout << "2. Select language" << std::endl;
-            std::cout << "3. Exit" << std::endl;
+            std::cout << Menu << std::endl;
 
             int option;
             std::cin >> option;
@@ -249,15 +253,16 @@ int main()
                 break;
             }
             case 2:
-                std::cout << "Select language:" << std::endl;
+                std::cout << "\n\nSelect language:" << std::endl;
                 std::cout << "1. Chinese (繁體)" << std::endl;
                 std::cout << "2. Chinese (簡體)" << std::endl;
                 std::cout << "3. English" << std::endl;
                 std::cout << "4. Japanese" << std::endl;
                 std::cout << "5. Korean" << std::endl;
-                std::cout << "6. Cancel" << std::endl;
+
                 int languageChoice;
                 std::cin >> languageChoice;
+
                 switch (languageChoice)
                 {
                 case 1:
@@ -275,18 +280,75 @@ int main()
                 case 5:
                     language = "Korean";
                     break;
-                case 6:
-                    return 0;
                 default:
                     std::cout << "Invalid choice." << std::endl;
                     language = "";
                 }
-                break;
-            case 3:
-                return 0;
-            default:
-                std::cout << "Invalid choice." << std::endl;
-                break;
+
+                std::ofstream languageOutputFile("language.txt");
+                if (languageOutputFile.is_open())
+                {
+                    languageOutputFile << language;
+                    languageOutputFile.close();
+                }
+                if (language == "English")
+                {
+                    minecraftProcessSearch = "Searching for Minecraft process...";
+                    minecraftProcessNotFound = "Minecraft process not found.";
+                    chooseDllFile = "Choose DLL file...";
+                    tryingToInject = "Trying to inject DLL: ";
+                    dllInjectionSuccess = "DLL injection successful.";
+                    dllInjectionFailure = "DLL injection failed.";
+                    noDllFileSelected = "No DLL file selected.";
+                    Menu = "Selected language: " + language + "\nSelect an option: \n1. Inject DLL\n2. Select language\n3. Exit\n";
+                }
+                else if (language == "Japanese")
+                {
+                    minecraftProcessSearch = "Minecraftプロセスを検索中...";
+                    minecraftProcessNotFound = "Minecraftプロセスが見つかりませんでした。";
+                    chooseDllFile = "DLLファイルを選択してください...";
+                    tryingToInject = "DLLを注入中: ";
+                    dllInjectionSuccess = "DLLの注入に成功しました。";
+                    dllInjectionFailure = "DLLの注入に失敗しました。";
+                    noDllFileSelected = "DLLファイルが選択されていません。";
+                    Menu = "選択された言語：" + language + "\nオプションを選択してください：\n1.DLLのインジェクション\n2.言語の選択\n3.終了\n";
+                }
+                else if (language == "Korean")
+                {
+                    minecraftProcessSearch = "Minecraft 프로세스 검색 중...";
+                    minecraftProcessNotFound = "Minecraft 프로세스를 찾을 수 없습니다.";
+                    chooseDllFile = "DLL 파일 선택...";
+                    tryingToInject = "DLL 주입 시도 중: ";
+                    dllInjectionSuccess = "DLL 주입 성공.";
+                    dllInjectionFailure = "DLL 주입 실패.";
+                    noDllFileSelected = "DLL 파일이 선택되지 않았습니다.";
+                    Menu = "선택한 언어: " + language + "\n옵션을 선택하세요: \n1. DLL 삽입\n2. 언어 선택\n3. 종료\n";
+                }
+                else if (language == "Chinese (繁體)")
+                {
+                    minecraftProcessSearch = "尋找 Minecraft 進程....";
+                    minecraftProcessNotFound = "Minecraft 進程未找到.";
+                    chooseDllFile = "挑選DLL中...";
+                    tryingToInject = "正在嘗試注入 DLL : ";
+                    dllInjectionSuccess = "DLL 注入成功.";
+                    dllInjectionFailure = "DLL 注入失敗.";
+                    noDllFileSelected = "未選擇 DLL.";
+                    Menu = "所選的語言：" + language + "\n選擇一個選項：\n1.注入DLL\n2.選擇語言\n3.退出\n";
+                }
+                else if (language == "Chinese (簡體)")
+                {
+                    minecraftProcessSearch = "寻找 Minecraft 进程....";
+                    minecraftProcessNotFound = "Minecraft 进程找到.";
+                    chooseDllFile = "挑选DLL中...";
+                    tryingToInject = "正在尝试注入 DLL : ";
+                    dllInjectionSuccess = "DLL 注入成功.";
+                    dllInjectionFailure = "DLL 注入失败.";
+                    noDllFileSelected = "未选择 DLL.";
+                    Menu = "所选的语言：" + language + "\n选择一个选项：\n1.注入DLL\n2.选择语言\n3.退出";
+                }
+                std::string Menu;
+
+
             }
         }
     }
