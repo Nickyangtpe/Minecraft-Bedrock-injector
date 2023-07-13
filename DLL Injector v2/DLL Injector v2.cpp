@@ -204,9 +204,16 @@ int main()
 
             int option;
             std::cin >> option;
-
+            
             switch (option)
             {
+            default:
+            {
+                std::cout << "\nPlease enter the correct number\n" << std::endl;
+                system("pause");
+                system("cls");
+                break;
+            }
             case 1:
             {
                 std::cout << "Inject DLL" << std::endl;
@@ -252,7 +259,9 @@ int main()
 
                 break;
             }
+           
             case 2:
+            {
                 std::cout << "\n\nSelect language:" << std::endl;
                 std::cout << "1. Chinese (繁體)" << std::endl;
                 std::cout << "2. Chinese (簡體)" << std::endl;
@@ -347,9 +356,10 @@ int main()
                     Menu = "所选的语言：" + language + "\n选择一个选项：\n1.注入DLL\n2.选择语言\n3.退出";
                 }
                 std::string Menu;
-
+            }
 
             }
+
         }
     }
 
