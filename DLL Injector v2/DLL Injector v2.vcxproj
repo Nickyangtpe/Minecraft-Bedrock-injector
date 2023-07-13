@@ -24,6 +24,7 @@
     <ProjectGuid>{61bf9ace-0354-4558-b924-97d6ad1443c0}</ProjectGuid>
     <RootNamespace>DLLInjectorv2</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>Minecraft DLL Injector</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -127,10 +128,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="DLL Injector v2.cpp" />
+    <ClCompile Include="Minecraft DLL Injector.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DLL Injector v2.h" />
+    <ClInclude Include="Minecraft DLL injector.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

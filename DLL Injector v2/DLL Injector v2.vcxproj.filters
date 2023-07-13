@@ -15,12 +15,12 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="DLL Injector v2.cpp">
+    <ClCompile Include="Minecraft DLL Injector.cpp">
       <Filter>來源檔案</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DLL Injector v2.h">
+    <ClInclude Include="Minecraft DLL injector.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
   </ItemGroup>
